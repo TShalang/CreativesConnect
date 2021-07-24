@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ApiService } from '../api.service';
 import { GlobalvariablesService } from '../globalvariables.service';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { User } from '../shared/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {FormControl, Validators} from '@angular/forms'
 
 
 @Component({
@@ -173,4 +173,5 @@ export class LoginComponent implements OnInit {
     }
     
   }
+  
 }

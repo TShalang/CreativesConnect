@@ -1,1 +1,3 @@
-<p>explore works!</p>
+
+<button (click) = "showProfile()"> My profile</button>
+<app-profile *ngIf="profileActive" [ngClass]="{'active':profileActive, 'idle':!profileActive}"></app-profile>

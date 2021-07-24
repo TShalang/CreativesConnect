@@ -4,7 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ExploreComponent } from './explore/explore.component';
 import { LoginComponent } from './login/login.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [

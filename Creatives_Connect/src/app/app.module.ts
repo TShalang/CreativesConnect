@@ -14,8 +14,10 @@ import { RegisterComponent } from './register/register.component';
 import { ExploreComponent } from './explore/explore.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
     }),
+    FontAwesomeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

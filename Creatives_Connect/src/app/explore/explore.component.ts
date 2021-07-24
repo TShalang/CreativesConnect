@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit {
-
+  profileActive:boolean = false;
+ 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  showProfile()
+  {
+    this.profileActive=!this.profileActive;
+  }
 }
