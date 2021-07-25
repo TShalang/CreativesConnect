@@ -16,6 +16,11 @@ import { CategoriesComponent } from './categories/categories.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AccountprofilesComponent } from './accountprofiles/accountprofiles.component';
+import { AccountprofileComponent } from './accountprofiles/accountprofile/accountprofile.component';
+import { UploadlineComponent } from './accountprofiles/uploadline/uploadline.component';
+import { AccountprofileService } from './shared/accountprofile.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,10 @@ import { ToastrModule } from 'ngx-toastr';
     ExploreComponent,
     CategoriesComponent,
     NotificationsComponent,
-    ProfileComponent
+    ProfileComponent,
+    AccountprofilesComponent,
+    AccountprofileComponent,
+    UploadlineComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +45,15 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
     }),
   ],
-  providers: [],
+  entryComponents:[UploadlineComponent],
+  providers: [AccountprofileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

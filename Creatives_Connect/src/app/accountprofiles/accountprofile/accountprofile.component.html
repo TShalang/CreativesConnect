@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <div class="form-group">
+                    <label>Profile No.</label>
+                    <input name="ProfileID" #ProfileID="ngModel" [(ngModel)]="service.formData.ProfileID"
+                        class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <label>Customer</label>
+                    <input name="ProfileID" #ProfileID="ngModel" [(ngModel)]="service.formData.ProfileID"
+                        class="form-control">
+                </div> -->
+    
+                <div class="form-group">
+                    <label>Bio</label>
+                    <input name="Bio" #Bio="ngModel" [(ngModel)]="service.formData.Bio"
+                        class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <label>Skill</label>
+                    <select name="SkillID" #SkillID="ngModel" [(ngModel)]="service.formData.SkillID"
+                        class="form-control">
+                        <option value="0">--Select--</option>
+                        <option *ngFor="let item of skillList" value="{{item.SkillID}}">{{item.Description}}</option>
+                    </select>
+                </div>
+            </div>
+    
+    
+        </div>
+    <!-- Upload items -->
+    <table>
+        <thead>
+            <th>Item</th>
+            <th>
+                <a  class="btn btn-sm btn-success text-white" (click)="AddorEditItem(null, service.formData.ProfileID)">Add Item</a>
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngIf="service.uploadItems.length==0">
+                <td class="font-italic text-center">
+                    No items selected.
+                </td>
+            </tr>
+            <tr *ngFor="let item of service.uploadItems; let i=index;">
+                
+                <td>{{item.File_Type}}</td>
+                <td> <img style="height: 100px; width: 100px;" *ngIf="item.File_Upload" [src]="item.File_Upload"></td>
+                <td>
+                    <a class="btn btn-sm btn-info text-white" (click)="AddorEditItem(i, service.formData.ProfileID)">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+    </div>

@@ -12,25 +12,18 @@ namespace CC_API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Skill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Skill()
         {
             this.Profiles = new HashSet<Profile>();
         }
     
-        public int Customer_ID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Contact_Number { get; set; }
-        public string Email_Address { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> Address_ID { get; set; }
-        public string OTP { get; set; }
-        public Nullable<bool> verified { get; set; }
+        public int SkillID { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Profile> Profiles { get; set; }
     }

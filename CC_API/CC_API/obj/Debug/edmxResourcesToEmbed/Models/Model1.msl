@@ -16,6 +16,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="File_Cat">
+      <EntityTypeMapping TypeName="CC_DBModel.File_Cat">
+        <MappingFragment StoreEntitySet="File_Cat">
+          <ScalarProperty Name="File_CatID" ColumnName="File_CatID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="CC_DBModel.Profile">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+          <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+          <ScalarProperty Name="Bio" ColumnName="Bio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="CC_DBModel.Skill">
+        <MappingFragment StoreEntitySet="Skill">
+          <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="CC_DBModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -24,6 +51,16 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Upload_Line">
+      <EntityTypeMapping TypeName="CC_DBModel.Upload_Line">
+        <MappingFragment StoreEntitySet="Upload_Line">
+          <ScalarProperty Name="Upload_LineID" ColumnName="Upload_LineID" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+          <ScalarProperty Name="File_Upload" ColumnName="File_Upload" />
+          <ScalarProperty Name="File_Type" ColumnName="File_Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

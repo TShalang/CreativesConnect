@@ -1,0 +1,31 @@
+<h4>Upload item</h4>
+<hr>
+
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden"  name="Upload_LineID" #Upload_LineID="ngModel" [(ngModel)]="formData.Upload_LineID">
+    <input type="hidden"  name="ProfileID" #ProfileID="ngModel" [(ngModel)]="formData.ProfileID">
+    <div class="form-group">
+        <label>File Type</label>
+        <select name="File_Type" #File_Type="ngModel" [(ngModel)]="formData.File_Type"
+            class="form-control" [class.is-invalid]="!isValid && formData.File_Type==''">
+            
+            <option value=" ">--Select--</option>
+            <option value="Image">--Image--</option>
+            <option value="Music">--Music--</option>
+            
+        </select>
+    </div>
+
+    <input type="file" (change)="file($event.target)" accept="image/*">
+                  
+    <img width="200px" height="200px" *ngIf="object.url" [src]="object.url" class="image"> <br><br>
+  
+
+    
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="button" class="btn btn-outine-dark ml" [mat-dialog-close]>Close</button>
+    </div>
+
+</form>

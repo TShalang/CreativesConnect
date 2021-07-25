@@ -12,26 +12,22 @@ namespace CC_API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Profile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Profile()
         {
-            this.Profiles = new HashSet<Profile>();
+            this.Upload_Line = new HashSet<Upload_Line>();
         }
     
-        public int Customer_ID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Contact_Number { get; set; }
-        public string Email_Address { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> Address_ID { get; set; }
-        public string OTP { get; set; }
-        public Nullable<bool> verified { get; set; }
+        public int ProfileID { get; set; }
+        public Nullable<int> Customer_ID { get; set; }
+        public Nullable<int> SkillID { get; set; }
+        public string Bio { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Skill Skill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profile> Profiles { get; set; }
+        public virtual ICollection<Upload_Line> Upload_Line { get; set; }
     }
 }

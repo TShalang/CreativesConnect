@@ -14,6 +14,35 @@
     <Property Name="OTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="verified" Type="Boolean" />
     <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
+    <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_Customer" FromRole="Customer" ToRole="Profile" />
+  </EntityType>
+  <EntityType Name="File_Cat">
+    <Key>
+      <PropertyRef Name="File_CatID" />
+    </Key>
+    <Property Name="File_CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <Property Name="SkillID" Type="Int32" />
+    <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Profile_Customer" FromRole="Profile" ToRole="Customer" />
+    <NavigationProperty Name="Skill" Relationship="Self.FK_Profile_Skill" FromRole="Profile" ToRole="Skill" />
+    <NavigationProperty Name="Upload_Line" Relationship="Self.FK_Upload_Line_Profile" FromRole="Profile" ToRole="Upload_Line" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillID" />
+    </Key>
+    <Property Name="SkillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_Skill" FromRole="Skill" ToRole="Profile" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -24,6 +53,16 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Upload_Line">
+    <Key>
+      <PropertyRef Name="Upload_LineID" />
+    </Key>
+    <Property Name="Upload_LineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfileID" Type="Int32" />
+    <Property Name="File_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="File_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_Upload_Line_Profile" FromRole="Upload_Line" ToRole="Profile" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -59,14 +98,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Profile_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_ID" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profile_Skill">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="0..1" />
+    <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillID" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="SkillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Upload_Line_Profile">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="Upload_Line" Type="Self.Upload_Line" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileID" />
+      </Principal>
+      <Dependent Role="Upload_Line">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CC_DBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="File_Cat" EntityType="Self.File_Cat" />
+    <EntitySet Name="Profiles" EntityType="Self.Profile" />
+    <EntitySet Name="Skills" EntityType="Self.Skill" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Upload_Line" EntityType="Self.Upload_Line" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="User_Address" EntityType="Self.User_Address" />
     <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
       <End Role="User" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_Customer" Association="Self.FK_Profile_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_Skill" Association="Self.FK_Profile_Skill">
+      <End Role="Skill" EntitySet="Skills" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Upload_Line_Profile" Association="Self.FK_Upload_Line_Profile">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Upload_Line" EntitySet="Upload_Line" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
