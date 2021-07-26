@@ -1,59 +1,47 @@
 <!--This HTML is for the login screen-->
-<style>
-  body {
-    background-image: url('https://i.pinimg.com/originals/74/99/d3/7499d36931199baf23250ea3ba0655e2.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
 
-  }
-  </style>
-<body>
-<div class="background">
-    <br><br><br><br><br><br>
 
-  <div class="container back flex "   >
-    <div>
-    <form   class="  p-5" >
-        <h2 class="h4 mb-4" style="font-size: 35px; color: black;">Login</h2> <br>
-        <input type="email" id="defaultLoginFormUsername" class="inputvalue" style="width: 400px;" placeholder="Username" name="logUsername" [(ngModel)]="logUsernameVar" > <br>
-        <input type="password" id="defaultLoginFormPassword" class="inputvalue" style="width: 400px;" placeholder="Password"name="logPassword" [(ngModel)]="logPasswordVar" >  
-        <div class="d-flex justify-content-around">
-          <!-- <div>
-            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
-          </div> -->
-          <div class="mt-2">
-              <!--change the routerlink to recover password when implemented and remove this comment-->
-            <a routerLink="/resetpassword">Forgot password?</a>
-          </div>
-        </div> <br>
+<div class="login-content centre" >
+  <form class="c ">
+    <h2 class="title">Sign in</h2>
+    <div class="input-div one">
       
-        <button  color="dark-red" block="true" class="login-form-btn" type="submit" (click)="customerLogin()">Login</button> <br> <br>
-    
-        <p style="color: black;">Not a registered customer?
-          <a routerLink="/register">Register</a>
-        </p>
-        <div *ngIf="succLogin" class="alert alert-danger">
-          This customer does not exist!
-        </div>
-    
-        <div *ngIf="invPass" class="alert alert-danger">
-          Incorrect Password!
-        </div>
-    
-        <div *ngIf="emptyUSR" class="alert alert-danger">
-          Please enter a username!
-        </div>
-    
-        <div *ngIf="emptyPSR" class="alert alert-danger">
-          Please enter a password!
-        </div>
-    
-      </form>
+      <div class="div">
+        <input type="email" id="defaultLoginFormUsername" class="input" placeholder="Username" name="logUsername"
+          [(ngModel)]="logUsernameVar">
+      </div>
     </div>
+    <div class="input-div pass">
+      
+      <div class="div">
+        <input type="password" id="defaultLoginFormPassword" class="input" placeholder="Password" name="logPassword"
+          [(ngModel)]="logPasswordVar">
+      </div>
     </div>
-  </div>
-</body>
-      <!--End of login HTML-->
+    <a routerLink="/resetpassword">Forgot password?</a>      
+    <button block="true" class="btn" type="submit" (click)="customerLogin()">Login</button>
+  Not a registered user?
+      <a routerLink="/register">Sign up </a>
+
+    
+    <div *ngIf="succLogin" class="alert alert-danger">
+      This customer does not exist!
+    </div>
   
+    <div *ngIf="invPass" class="alert alert-danger">
+      Incorrect Password!
+    </div>
+  
+    <div *ngIf="emptyUSR" class="alert alert-danger">
+      Please enter a username!
+    </div>
+  
+    <div *ngIf="emptyPSR" class="alert alert-danger">
+      Please enter a password!
+    </div>
+  </form>
+</div>
+
+
+
+  <!--End of login HTML-->

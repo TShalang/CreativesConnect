@@ -14,6 +14,7 @@ namespace CC_API
 
         public int ProfileID { get; set; }
         public int Customer_ID { get; set; }
+        public string CustomerName { get; set; }
         public int SkillID { get; set; }
         public string SkillName { get; set; }
         public string Bio { get; set; }

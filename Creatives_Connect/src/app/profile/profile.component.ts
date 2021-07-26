@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ProfileVM } from '../accountprofiles/profile-vm';
 import { UploadLineVM } from '../accountprofiles/upload-line-vm';
 import { AccountprofileService } from '../shared/accountprofile.service';
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   CurrentProfileList : UploadLineVM[] = [];
 
-  constructor(private service: AccountprofileService) { }
+  constructor(private service: AccountprofileService, private toastr: ToastrService) { }
 
   
 
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
     this.profileList = profileList;
     
   });
+  
 }
 
 requestprofiledetails(id) {
@@ -41,5 +43,9 @@ requestprofiledetails(id) {
   // this.httpService.get('https://localhost:44369/api/Design/GetDesignID/'+id).subscribe (res => {
   //   this.designline = res as string [];
   // });
+}
+
+success(){
+  this.toastr.success('Message sent','Success!');
 }
 }

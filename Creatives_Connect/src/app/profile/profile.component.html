@@ -1,25 +1,55 @@
-<table class="table">
-    <thead>
-        <th>Bio</th>
-        <th>Name</th>
-        <th>Skill</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of profileList">
-            <td>{{item.Bio}}</td>
-            <td>{{item.Customer}}</td>
-            <td>{{item.SkillName}}</td>
-            <td>
-                <button mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
-                class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#profiledetails">View Profile
-               
-              </button>
-            </td>
 
-        </tr>
-    </tbody>
-</table>
+  <div class="card"  *ngFor="let item of profileList">
+    <div class="top"><span>{{item.SkillName}}</span>
+    <div class="picture"></div>
+    </div>
+    <div class="bottom"><br><br><br><br><br>
+        <div class="name">{{item.CustomerName}}</div><br>
+        <h2>{{item.Bio}}</h2>
+        <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
+        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery</button> <br><br>
+        <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;" (click)="success()">CONNECT!</button>
+
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- 
+
+<div class="container">
+    <div class="centre" style="border-style: double; ">
+<mat-card class="example-card " *ngFor="let item of profileList" >
+    <h1>{{item.SkillName}}</h1>
+   <h1>{{item.CustomerName}}</h1>
+    <br>
+    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi9xX8QTUJrHRXT38MgHFekUam9Ro0azZjKU8o3YBI7LKYA8GN7FCTPbX1et3ogcoM9zs&usqp=CAU" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        
+     <h2>{{item.Bio}}</h2>
+    </mat-card-content>
+    <mat-card-actions>
+        <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
+        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery
+       
+      </button><br><br>
+    </mat-card-actions>
+  </mat-card>
+  <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;">CONNECT!</button>
+
+    </div> -->
+
+   
+
+
+
+
+
 
 <!-- Modal -->
 <div id="profiledetails" class="modal fade" role="dialog">
@@ -28,21 +58,13 @@
         <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
          
           <div class="modal-body">
-            <h1 class="mt-2" style="font-size: 35px;">Profile Details</h1> <br><br>
-            <table class="table">
-              <thead>                
-                <th>Upload Type</th>
-                <th>Upload File</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let line of CurrentProfileList">
+            <h1 class="mt-2" style="font-size: 35px;">Gallery</h1> <br><br>
+            <tr *ngFor="let line of CurrentProfileList">
                 
-                  <td>{{line.File_Type}}</td>
-                  <td> <img style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload"></td>
-   
-                </tr>
-              </tbody>
-            </table>
+                  
+                <td> <img style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload"></td>
+ 
+              </tr>
           </div>
           <div class="modal-footer">
           

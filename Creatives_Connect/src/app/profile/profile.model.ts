@@ -3,5 +3,5 @@ export class Profile {
     Customer_ID : number;
     SkillID : number;
     Bio : string;
-    
+    CustomerName: string
 }

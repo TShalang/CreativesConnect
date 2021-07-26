@@ -47,7 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatDialogModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 5000,
       positionClass: 'toast-top-full-width',
       preventDuplicates: true,
     }),

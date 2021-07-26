@@ -1,4 +1,21 @@
-<table class="table">
+  <div class="card"  *ngFor="let item of profileList">
+    <div class="top"><span>{{item.SkillName}}</span>
+    <div class="picture"></div>
+    </div>
+    <div class="bottom"><br><br><br><br><br>
+        <div class="name">{{item.CustomerName}}</div><br>
+        <h2>{{item.Bio}}</h2>
+        <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
+        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery</button> <br><br>
+        <button>Update Profile</button>
+       
+
+        
+    </div>
+</div>
+
+
+<!-- <table class="table">
     <thead>
         <th>Bio</th>
         <th>Name</th>
@@ -19,7 +36,7 @@
 
         </tr>
     </tbody>
-</table>
+</table> -->
 
 <!-- Modal -->
 <div id="profiledetails" class="modal fade" role="dialog">

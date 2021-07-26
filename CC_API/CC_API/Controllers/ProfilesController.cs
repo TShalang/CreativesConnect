@@ -111,6 +111,7 @@ namespace CC_API.Controllers
                 {
                     ProfileVM profileVM = new ProfileVM();
                     profileVM.Customer_ID = profile.Customer_ID.Value;
+                    
                     profileVM.Bio = profile.Bio;
                     profileVM.ProfileID = profile.ProfileID;
                     //designVM.Design_Name = design.Design_Name;
@@ -119,6 +120,11 @@ namespace CC_API.Controllers
                     profileVM.SkillName = db.Skills
                         .Where(s => s.SkillID == profileVM.SkillID)
                         .Select(s => s.Description)
+                        .FirstOrDefault();
+
+                    profileVM.CustomerName = db.Customers
+                        .Where(c => c.Customer_ID == profileVM.Customer_ID)
+                        .Select(c => c.First_Name + " " + c.Last_Name)
                         .FirstOrDefault();
 
                     foreach (var UploadLine in profile.Upload_Line)
@@ -193,19 +199,31 @@ namespace CC_API.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
         // POST: api/Profiles
         [ResponseType(typeof(Profile))]
         public IHttpActionResult PostProfile(Profile profile)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                //Profile Table
+                db.Profiles.Add(profile);
+
+                //Upload_Items table
+                foreach (var item in profile.Upload_Line)
+                {
+                    db.Upload_Line.Add(item);
+                }
+                db.SaveChanges();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
-            db.Profiles.Add(profile);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = profile.ProfileID }, profile);
         }
 
         // DELETE: api/Profiles/5
