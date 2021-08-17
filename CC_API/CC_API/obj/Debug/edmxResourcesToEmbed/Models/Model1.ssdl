@@ -21,6 +21,17 @@
     <Property Name="File_CatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_ID" Type="int" />
+    <Property Name="ProfileID" Type="int" />
+    <Property Name="Contact_No" Type="varchar" MaxLength="50" />
+    <Property Name="Email_Address" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="Profile">
     <Key>
       <PropertyRef Name="ProfileID" />
@@ -29,6 +40,7 @@
     <Property Name="Customer_ID" Type="int" />
     <Property Name="SkillID" Type="int" />
     <Property Name="Bio" Type="varchar(max)" />
+    <Property Name="ProfilePic" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Skill">
     <Key>
@@ -90,6 +102,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Notification_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_ID" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Profile1">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileID" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
@@ -129,6 +165,7 @@
   <EntityContainer Name="CC_DBModelStoreContainer">
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="File_Cat" EntityType="Self.File_Cat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -138,6 +175,14 @@
     <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
       <End Role="User" EntitySet="User" />
       <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Customer" Association="Self.FK_Notification_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Profile1" Association="Self.FK_Notification_Profile1">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="Notification" EntitySet="Notification" />
     </AssociationSet>
     <AssociationSet Name="FK_Profile_Customer" Association="Self.FK_Profile_Customer">
       <End Role="Customer" EntitySet="Customer" />

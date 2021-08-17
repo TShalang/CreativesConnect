@@ -18,6 +18,7 @@ namespace CC_API
         public int SkillID { get; set; }
         public string SkillName { get; set; }
         public string Bio { get; set; }
+        public string ProfilePic { get; set; }
 
         public virtual ICollection<UploadLineVM> UploadLineVMs { get; set; }
     }

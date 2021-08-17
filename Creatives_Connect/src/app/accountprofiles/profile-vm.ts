@@ -13,6 +13,7 @@ export class ProfileVM {
     SkillID : number;
     SkillName : string;
     Bio : string;
+    ProfilePic: string
 
     UploadLineVMs : UploadLineVM[];
 

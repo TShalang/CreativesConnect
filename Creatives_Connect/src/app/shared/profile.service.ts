@@ -19,4 +19,8 @@ export class ProfileService {
   getSkills(){
     return this.http.get(environment.apiURL +'/Skills').toPromise();
    }
+
+   getProfileDetails(id){
+    return this.http.get<any[]>("https://localhost:44372/api/Profiles/GetAllInfo/"+id);
+  }
 }

@@ -4,6 +4,8 @@ import { Uploadline } from '../shared/uploadline.model';
 import { Accountprofile } from '../shared/accountprofile.model'; 
 import { ProfileVM } from './profile-vm';
 import { UploadLineVM } from './upload-line-vm';
+import { Customer } from '../customer';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-accountprofiles',
@@ -13,10 +15,13 @@ import { UploadLineVM } from './upload-line-vm';
 export class AccountprofilesComponent implements OnInit {
 
   profileList: ProfileVM[] = [];
+  userDetails: Customer[];
 
   CurrentProfileList : UploadLineVM[] = [];
 
-  constructor(private service: AccountprofileService) { }
+  constructor(public service: AccountprofileService, private httpService: HttpClient) { }
+  userData
+  info
  
 
   ngOnInit(): void {
@@ -25,6 +30,15 @@ export class AccountprofilesComponent implements OnInit {
       this.profileList = profileList;
       
     });
+    this.httpService.get('https://localhost:44372/api/Profiles/getInfo/' +  parseInt(localStorage['Customer_ID'])  ).subscribe (data => {
+      this.userData = data as string [];
+      console.log(this.userData)
+    });
+    // this.httpService.get('https://localhost:44372/api/Profiles/getAllInfo/' +  parseInt(localStorage["ProfileID"])  ).subscribe (data => {
+    //   this.info = data as string [];
+    //   console.log(this.info)
+    // });
+    // this.requestprofiledetails(localStorage["ProfileID"]);
   }
 
   requestprofiledetails(id) {
@@ -38,6 +52,9 @@ export class AccountprofilesComponent implements OnInit {
 
     // this.httpService.get('https://localhost:44369/api/Design/GetDesignID/'+id).subscribe (res => {
     //   this.designline = res as string [];
+    // });
+    // this.httpService.get('https://localhost:44372/api/Profiles/getAllInfo/'+id).subscribe (res => {
+    //   this.info = res as string [];
     // });
   }
 

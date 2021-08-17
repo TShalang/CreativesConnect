@@ -1,8 +1,10 @@
+<app-navbar>]</app-navbar>
+<!-- 
 <div class="centre" style=" margin-left: 30%">
 <div class="container mt-5">
     <form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"> -->
                 <!-- <div class="form-group">
                     <label>Profile No.</label>
                     <input name="ProfileID" #ProfileID="ngModel" [(ngModel)]="service.formData.ProfileID"
@@ -14,8 +16,13 @@
                     <input name="ProfileID" #ProfileID="ngModel" [(ngModel)]="service.formData.ProfileID"
                         class="form-control">
                 </div> -->
-    
-                <div class="form-group">
+                <!-- <div class="form-group">
+                    <label>Profile Pic</label>
+                    <input name="ProfilePic" #Bio="ProfilePic" [(ngModel)]="service.formData.ProfilePic"
+                        class="form-control">
+                </div> -->
+
+                <!-- <div class="form-group">
                     <label>Bio</label>
                     <input name="Bio" #Bio="ngModel" [(ngModel)]="service.formData.Bio"
                         class="form-control">
@@ -32,9 +39,9 @@
             </div>
     
     
-        </div>
+        </div> -->
     <!-- Upload items -->
-    <table>
+    <!-- <table>
         <thead>
             <th>Item</th>
             <th>
@@ -46,20 +53,129 @@
                 <td class="font-italic text-center">
                     No items selected.
                 </td>
-            </tr>
-            <tr *ngFor="let item of service.uploadItems; let i=index;">
+            </tr> -->
+            <!-- <tr *ngFor="let item of service.uploadItems; let i=index;">
                 
                 <td>{{item.File_Type}}</td>
                 <td> <img style="height: 100px; width: 100px;" *ngIf="item.File_Upload" [src]="item.File_Upload"></td>
                 <td>
                     <a class="btn btn-sm btn-info text-white" (click)="AddorEditItem(i, service.formData.ProfileID)">Edit</a>
                 </td>
-            </tr>
-        </tbody>
+            </tr> -->
+        <!-- </tbody>
     </table>
         <div class="form-group">
             <button type="submit" class="btn btn-dark">Submit</button>
         </div>
     </form>
 
-</div>
+</div> -->
+
+
+
+
+
+
+<div class="container-fluid">
+    <form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+    <div class="row mt-5">
+      <div class="col-sm-12 col-md-3">
+        <input type="file" (change)="file($event.target)" accept="image/*">
+                  
+                  <img width="200px" height="200px" *ngIf="object.url" [src]="object.url" class="image">
+      </div>
+      <div class="col-sm-12 col-md-5">
+        <div class="row">
+          <h4>Profile</h4>
+        </div>
+        <div class="row">
+          <div class="col">
+            
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="Mister">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="Bean">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="Bean">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="email" class="form-control" id="input" placeholder="mr@bean.com">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="0123456789">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+
+                  <input type="text" class="form-control" id="input" placeholder="South Africa">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="Gauteng">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <select name="SkillID" #SkillID="ngModel" [(ngModel)]="service.formData.SkillID"
+                        class="form-control">
+                        <option value="0">--Select Portfolio Genre--</option>
+                        <option *ngFor="let item of skillList" value="{{item.SkillID}}">{{item.Description}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="input" placeholder="Pricing">
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" id="textarea" rows="5"
+                  placeholder="Type in your biography" name="Bio" #Bio="ngModel" [(ngModel)]="service.formData.Bio"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group mt-3 col-md-6">
+                  <a  class="btn btn-sm btn-success text-white" (click)="AddorEditItem(null, service.formData.ProfileID)">Add Item</a>
+                </div>
+                <div class="form-group align-self-end text-right mt-3 col-md-6">
+                  <button type="submit" class="btn btn-secondary btn-sm">Save</button>
+                </div>
+              </div>
+         
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <div class="row">
+          <h4>My Uploads</h4>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4" *ngFor="let item of service.uploadItems; let i=index;">
+            <img class="img artistwork img-fluid mt-5" style="height: 100px; width: 100px;" *ngIf="item.File_Upload" [src]="item.File_Upload">
+          </div>
+        </div>
+      
+    
+    
+   
+        <div class="container">
+          <div class="row mt-5">
+            <div class="col align-self-end text-right">
+              <div class="d-grid gap-2 ">
+                <button type="button" class="btn btn-secondary btn-sm">Next</button><span> </span>
+                <button type="button" class="btn btn-secondary btn-sm">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+
+
+
+  </div> 

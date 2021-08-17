@@ -1,3 +1,33 @@
+
+
+.nav {
+  width: 100%;
+}
+.navbar {
+  width: 100%;
+}
+.card {
+  height: 100%;
+}
+.img {
+  border-radius: 10%;
+}
+.profile-picture {
+  height: 300px;
+}
+.artistwork {
+  border-radius: 40%;
+  height: 120px;
+  width: 90px;
+}
+.btn {
+  border-radius: 5px 15px;
+}
+#input,
+#textarea {
+  border-radius: 15px;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: rgb(154, 210, 243);

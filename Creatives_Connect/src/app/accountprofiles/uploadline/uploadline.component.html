@@ -4,7 +4,7 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <input type="hidden"  name="Upload_LineID" #Upload_LineID="ngModel" [(ngModel)]="formData.Upload_LineID">
     <input type="hidden"  name="ProfileID" #ProfileID="ngModel" [(ngModel)]="formData.ProfileID">
-    <div class="form-group">
+    <div hidden class="form-group">
         <label>File Type</label>
         <select name="File_Type" #File_Type="ngModel" [(ngModel)]="formData.File_Type"
             class="form-control" [class.is-invalid]="!isValid && formData.File_Type==''">
@@ -29,3 +29,12 @@
     </div>
 
 </form>
+
+<tr *ngFor="let item of profileService.uploadItems; let i=index;">
+                
+    <td>{{item.File_Type}}</td>
+    <td> <img style="height: 100px; width: 100px;" *ngIf="item.File_Upload" [src]="item.File_Upload"></td>
+    <td>
+        <a class="btn btn-sm btn-info text-white" (click)="AddorEditItem(i, service.formData.ProfileID)">Edit</a>
+    </td>
+</tr>

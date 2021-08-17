@@ -1,30 +1,61 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notification Card</title>
-    
-</head>
-<body>
-    <div class="card">
-        <div class="top"><span>Notification</span>
-     
+
+        <div class="container">
+
+        <h1 class="centre">Send Message</h1> <br>
+            <div class="row">
+                <div class="form-group flex" style="margin: 0 auto; width: 300px;">
+                    <label >Contact Number:</label>
+                    <input class="form-control"  [(ngModel)]="service.messages.Contact_No" name="Contact_No"
+                        #Contact_No="ngModel"
+                        >
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group flex" style="margin: 0 auto; width: 300px;">
+                    <label >Email Address:</label>
+                    <input class="form-control"  [(ngModel)]="service.messages.Email_Address" name="Email_Address"
+                        #Email_Address="ngModel"
+                       >
+                </div>
+
+
+
+                
+            </div>
+            <div class="row ">
+                <div class="form-group flex" style="margin: 0 auto; width: 300px;" >
+                    <label >Message:</label>
+                    <textarea class="form-control"  [(ngModel)]="service.messages.Message" name="ID_Number"
+                        #ID_Number="ngModel" placeholder="Enter your message here..." rows="6"
+                       ></textarea>
+                </div>
+
+            </div>
+            <!-- <div class="row">
+                <div hidden class="form-group flex" style="margin: 0 auto; width: 300px;">
+                    <label >Contact Number:</label>
+                    <input class="form-control"  [(ngModel)]="service.messages.Customer_ID" name="Contact_Number"
+                        #Contact_Number="ngModel"
+                        >
+                </div>
+                <div hidden class="form-group flex" style="margin: 0 auto; width: 300px;">
+                    <label >Cuso:</label>
+                    <input class="form-control"  [(ngModel)]="service.messages.ProfileID" name="ProfileID"
+                        #ProfileID="ngModel"
+                        >
+                </div>
+            </div> -->
+            <!-- <button (click)="onSubmit()" class="btn btn-success">Save</button> -->
+       <div class="flex centre" style="margin-top: 20px;">
+
+      
+            <button mat-raised-button color="primary" (click)="onSubmit()" mat-dialog-close>Send</button>
+            <a style="margin-left: 10px;" type="button"  mat-raised-button color="warn" mat-dialog-close>Cancel</a>
+        </div>  
+   
+  
+
+
+
         </div>
-        <div class="bottom">
-            <div class="name">Richard Webber</div>
-            <div class="description">I want to connect with you. Lets chat!</div>
-            <a href="#"><button class="customize">Chat with Richard</button></a>
-        </div>
-    </div>
-    <div class="card" style="margin-left: 400px;">
-        <div class="top"><span>Notification</span>
-     
-        </div>
-        <div class="bottom">
-            <div class="name">Cristina Yang</div>
-            <div class="description">I want to connect with you. Lets chat!</div>
-            <a href="#"><button class="customize">Chat with Cristina</button></a>
-        </div>
-    </div>
-</body>
-</html>

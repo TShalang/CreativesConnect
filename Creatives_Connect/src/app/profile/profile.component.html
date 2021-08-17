@@ -1,17 +1,28 @@
+<app-navbar></app-navbar>
 
+
+
+<div class="main centre">
+  
   <div class="card"  *ngFor="let item of profileList">
-    <div class="top"><span>{{item.SkillName}}</span>
-    <div class="picture"></div>
+    <div class="top"><span>{{item.SkillName}}</span>  
+      <img class="picture" src="{{item.ProfilePic}}" alt="">
+    
     </div>
     <div class="bottom"><br><br><br><br><br>
         <div class="name">{{item.CustomerName}}</div><br>
         <h2>{{item.Bio}}</h2>
         <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
-        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery</button> <br><br>
-        <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;" (click)="success()">CONNECT!</button>
-
+        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Profile</button> <br><br>
+      
+       
+        <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;" (click)="connect()">CONNECT!</button>
         
     </div>
+    
+</div>
+
+
 </div>
 
 
@@ -20,58 +31,117 @@
 
 
 
-<!-- 
-
-<div class="container">
-    <div class="centre" style="border-style: double; ">
-<mat-card class="example-card " *ngFor="let item of profileList" >
-    <h1>{{item.SkillName}}</h1>
-   <h1>{{item.CustomerName}}</h1>
-    <br>
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi9xX8QTUJrHRXT38MgHFekUam9Ro0azZjKU8o3YBI7LKYA8GN7FCTPbX1et3ogcoM9zs&usqp=CAU" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-        
-     <h2>{{item.Bio}}</h2>
-    </mat-card-content>
-    <mat-card-actions>
-        <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
-        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery
-       
-      </button><br><br>
-    </mat-card-actions>
-  </mat-card>
-  <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;">CONNECT!</button>
-
-    </div> -->
-
-   
-
-
-
-
-
-
 <!-- Modal -->
 <div id="profiledetails" class="modal fade" role="dialog">
-    <!-- <form #QRdetails="ngForm"> -->
-      <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
-         
-          <div class="modal-body">
-            <h1 class="mt-2" style="font-size: 35px;">Gallery</h1> <br><br>
-            <tr *ngFor="let line of CurrentProfileList">
-                
+  <!-- <form #QRdetails="ngForm"> -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
+
+      <div class="modal-body">
+        <h1 class="mt-2" style="font-size: 35px;">Profile </h1> <br><br>
+        <!-- <tr *ngFor="let line of CurrentProfileList">                
+                <td> <img style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload"></td> 
+              </tr> -->
+
+
+        <div class="container-fluid">
+
+          <div class="row mt-5">
+            <div class="col-sm-12 col-md-3" *ngFor="let item of profileList">
+              <img class="img profile-picture img-fluid" [src]="item.ProfilePic" alt="Profile picture">
+       
+            </div>
+            <div class="col-sm-12 col-md-5">
+              <div class="row">
+                <h4>Profile</h4>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.First_Name}}</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.Last_Name}}</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.UserName}}</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.Email_Address}}</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.Contact_Number}}</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+
+                        <label for="">Nothing here</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="">Johannesburg</label>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{info.Skill}}</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="">R200 per photograph</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="">{{info.Bio}}</label>
+                    </div>
+                   
+                  </form>
                   
-                <td> <img style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload"></td>
- 
-              </tr>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+              <div class="row">
+                <h4>My Uploads</h4>
+              </div>
+              <div class="row mt-2">
+                <div class="col" *ngFor="let line of CurrentProfileList">
+                     <img class="img artistwork img-fluid" style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload">
+                </div>
+              
+              </div>
+
+              <div class="container">
+                <div class="row mt-5">
+                  <div class="col align-self-end text-right">
+                    <div class="d-grid gap-2 ">
+                      <button type="button" class="btn btn-secondary btn-sm">Next</button><span> </span>
+                      <button type="button" class="btn btn-secondary btn-sm">Back</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-          
-            <button type="button" class="btn btn-danger" mat-raised-button data-dismiss="modal">Close</button>
-          </div>
+<br><br><br><br>
+
+
+
+        </div>
+
+       
+        <div class="modal-footer">
+        
+          <button type="button" class="btn btn-danger" mat-raised-button data-dismiss="modal" >Close</button>
+          <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 50px;" data-dismiss="modal" (click)="connect()">CONNECT!</button>
         </div>
       </div>
+    </div>
     <!-- </form> -->
-  
+
   </div>

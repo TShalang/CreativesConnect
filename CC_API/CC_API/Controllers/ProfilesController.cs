@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -36,6 +37,77 @@ namespace CC_API.Controllers
         }
 
 
+        [System.Web.Http.Route("api/Profiles/GetCustomerdetails/{id}")]
+        [HttpGet]
+        public dynamic GetCustomerDetails(int id)
+        {
+            try
+            {
+                Customer customerDetails = db.Customers.Where(zz => zz.Customer_ID == id).FirstOrDefault();
+
+                dynamic user = new ExpandoObject();
+                user.Customer_ID = customerDetails.Customer_ID;
+                user.Contact_Number = customerDetails.Contact_Number;
+                user.Email_Address = customerDetails.Email_Address;
+                user.Name = customerDetails.First_Name + " " + customerDetails.Last_Name;
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [System.Web.Http.Route("api/Profiles/getInfo/{id}")]
+        [HttpGet]
+        public System.Object getCaptureCollect(int id)
+        {
+            var collectionline = (from a in db.Customers
+                                  join b in db.Users on a.UserID equals b.UserID
+                                  join c in db.Profiles on a.Customer_ID equals c.Customer_ID
+                                  where a.Customer_ID == id
+                                  select new
+                                  {
+                                      a.First_Name,
+                                      a.Last_Name,
+                                      a.Contact_Number,
+                                      a.Email_Address,                                     
+                                      userName = b.UserName,
+                                      c.ProfilePic
+
+
+                                  }).FirstOrDefault();
+            return collectionline;
+        }
+
+        [System.Web.Http.Route("api/Profiles/getAllInfo/{id}")]
+        [HttpGet]
+        public System.Object getAllInfo(int id)
+        {
+            var info = (from a in db.Profiles
+                        join b in db.Customers on a.Customer_ID equals b.Customer_ID
+                        join c in db.Skills on a.SkillID equals c.SkillID
+                        join d in db.Profiles on a.Customer_ID equals d.Customer_ID
+
+                        where a.ProfileID == id
+                        select new
+                                  {
+                                      a.Bio,
+                                      Skill = c.Description,
+                                      b.First_Name,
+                                      b.Last_Name,
+                                      b.Contact_Number,
+                                      b.Email_Address,
+                                      b.User.UserName,
+                            d.ProfilePic
+
+
+                        }).FirstOrDefault();
+            return info ;
+        }
+
 
 
 
@@ -60,6 +132,7 @@ namespace CC_API.Controllers
                     profileVM.Bio = profile.Bio;
                     profileVM.ProfileID = profile.ProfileID;
                     //designVM.Design_Name = design.Design_Name;
+                    profileVM.ProfilePic = profile.ProfilePic;
                     profileVM.SkillID = profile.SkillID.Value;
 
                     profileVM.SkillName = db.Skills
@@ -116,6 +189,7 @@ namespace CC_API.Controllers
                     profileVM.ProfileID = profile.ProfileID;
                     //designVM.Design_Name = design.Design_Name;
                     profileVM.SkillID = profile.SkillID.Value;
+                    profileVM.ProfilePic = profile.ProfilePic;
 
                     profileVM.SkillName = db.Skills
                         .Where(s => s.SkillID == profileVM.SkillID)
@@ -150,6 +224,33 @@ namespace CC_API.Controllers
             }
 
         }
+
+
+        [Route("api/Profiles/upload")]
+        [HttpPost]
+        public IHttpActionResult upload([FromBody] dynamic file)
+        {
+            try
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+
+                string upload = file.file;
+
+                Profile profile = new Profile();
+
+                profile.ProfilePic = upload;
+                db.Profiles.Add(profile);
+                db.SaveChanges();
+
+                return Ok(profile);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         // GET: api/Profiles/5
         [ResponseType(typeof(Profile))]

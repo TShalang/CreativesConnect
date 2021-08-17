@@ -24,6 +24,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="CC_DBModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Profiles">
       <EntityTypeMapping TypeName="CC_DBModel.Profile">
         <MappingFragment StoreEntitySet="Profile">
@@ -31,6 +43,7 @@
           <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
           <ScalarProperty Name="SkillID" ColumnName="SkillID" />
           <ScalarProperty Name="Bio" ColumnName="Bio" />
+          <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

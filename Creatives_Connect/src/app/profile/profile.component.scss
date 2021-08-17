@@ -1,3 +1,40 @@
+
+.nav {
+  width: 100%;
+}
+.navbar {
+  width: 100%;
+}
+.card {
+  height: 100%;
+}
+.img {
+  border-radius: 10%;
+}
+.profile-picture {
+  height: 300px;
+}
+.artistwork {
+  border-radius: 40%;
+  height: 120px;
+  width: 90px;
+}
+.btn {
+  border-radius: 5px 15px;
+}
+#input,
+#textarea {
+  border-radius: 15px;
+}
+
+.modal-dialog {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+
+
 .centre {
     text-align: center;
     align-items: center;
@@ -21,24 +58,27 @@
 
 ::selection{background: hsla(177, 70%, 41%, .75);}
 
-body{
-    margin: 0;
-    font-family: Ubuntu;
-    background: hsl(177, 70%, 41%);
-}
-
 .card{
-    position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
+  width: 20%;
+  height:657.5px;
+  background: white;
+  box-shadow: 2px 2px 10px rgba(0,0,0, .75);
+  display: inline-block;
+  box-shadow: 2px 2px 20px black;
+  border-radius: 5px; 
+  margin: 2%;
+ }
 
-    width: 450px;
-    height:637.5px;
+// .card{
+   
 
-    background: white;
-    box-shadow: 2px 2px 10px rgba(0,0,0, .75)
-}
+
+//     width: 450px;
+//     height:637.5px;
+
+//     background: white;
+//     box-shadow: 2px 2px 10px rgba(0,0,0, .75)
+// }
 
 .top{
     position: relative;
@@ -57,7 +97,7 @@ body{
 
 }
 .picture{
-    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi9xX8QTUJrHRXT38MgHFekUam9Ro0azZjKU8o3YBI7LKYA8GN7FCTPbX1et3ogcoM9zs&usqp=CAU);
+    // background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi9xX8QTUJrHRXT38MgHFekUam9Ro0azZjKU8o3YBI7LKYA8GN7FCTPbX1et3ogcoM9zs&usqp=CAU);
     background-position: center;
     background-size: cover;
     width: 250px;
@@ -123,4 +163,7 @@ body{
 }
 .else{
     font-size: .90em;
+}
+label {
+  font-size: 20px;
 }

@@ -4,4 +4,5 @@ export class Profile {
     SkillID : number;
     Bio : string;
     CustomerName: string
+    ProfilePic: string
 }

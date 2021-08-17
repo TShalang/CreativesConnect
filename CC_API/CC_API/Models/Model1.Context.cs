@@ -29,6 +29,7 @@ namespace CC_API.Models
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<File_Cat> File_Cat { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

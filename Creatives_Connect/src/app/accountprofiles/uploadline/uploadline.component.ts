@@ -20,7 +20,7 @@ export class UploadlineComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<UploadlineComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private profileService: AccountprofileService
+    public profileService: AccountprofileService
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class UploadlineComponent implements OnInit {
       form.form.addControl( 'File_Upload' , new FormControl('') );
       form.controls['File_Upload'].setValue(this.formData.File_Upload);
     this.profileService.uploadItems.push(form.value);
-    this.dialogRef.close()
+    
     }
   }
 

@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-
 ::selection{background: hsla(177, 70%, 41%, .75);}
+
+.centre {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+	
+  }
 
 body{
     margin: 0;

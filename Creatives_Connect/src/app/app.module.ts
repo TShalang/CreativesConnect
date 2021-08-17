@@ -21,6 +21,17 @@ import { AccountprofileComponent } from './accountprofiles/accountprofile/accoun
 import { UploadlineComponent } from './accountprofiles/uploadline/uploadline.component';
 import { AccountprofileService } from './shared/accountprofile.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { AccproComponent } from './accpro/accpro.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { MynotificationsComponent } from './mynotifications/mynotifications.component';
+import { NavbarclientComponent } from './navbarclient/navbarclient.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { ClientexploreComponent } from './clientexplore/clientexplore.component';
+import { ClientprofileComponent } from './clientprofile/clientprofile.component';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +44,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProfileComponent,
     AccountprofilesComponent,
     AccountprofileComponent,
-    UploadlineComponent
+    UploadlineComponent,
+    NavbarComponent,
+    AccproComponent,
+    InvoiceComponent,
+    MynotificationsComponent,
+    NavbarclientComponent,
+    WelcomeComponent,
+    ClientexploreComponent,
+    ClientprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +65,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MatButtonModule,
     MatDialogModule,
+    MatTabsModule,
+    MatBadgeModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-full-width',

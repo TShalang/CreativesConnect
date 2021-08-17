@@ -14,6 +14,7 @@
     <Property Name="OTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="verified" Type="Boolean" />
     <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Customer" FromRole="Customer" ToRole="Notification" />
     <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_Customer" FromRole="Customer" ToRole="Profile" />
   </EntityType>
   <EntityType Name="File_Cat">
@@ -23,6 +24,19 @@
     <Property Name="File_CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <Property Name="ProfileID" Type="Int32" />
+    <Property Name="Contact_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Notification_Customer" FromRole="Notification" ToRole="Customer" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_Notification_Profile1" FromRole="Notification" ToRole="Profile" />
+  </EntityType>
   <EntityType Name="Profile">
     <Key>
       <PropertyRef Name="ProfileID" />
@@ -31,7 +45,9 @@
     <Property Name="Customer_ID" Type="Int32" />
     <Property Name="SkillID" Type="Int32" />
     <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProfilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Profile_Customer" FromRole="Profile" ToRole="Customer" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Profile1" FromRole="Profile" ToRole="Notification" />
     <NavigationProperty Name="Skill" Relationship="Self.FK_Profile_Skill" FromRole="Profile" ToRole="Skill" />
     <NavigationProperty Name="Upload_Line" Relationship="Self.FK_Upload_Line_Profile" FromRole="Profile" ToRole="Upload_Line" />
   </EntityType>
@@ -98,6 +114,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Notification_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_ID" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
@@ -107,6 +135,18 @@
       </Principal>
       <Dependent Role="Profile">
         <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Profile1">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileID" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="ProfileID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -137,6 +177,7 @@
   <EntityContainer Name="CC_DBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="File_Cat" EntityType="Self.File_Cat" />
+    <EntitySet Name="Notifications" EntityType="Self.Notification" />
     <EntitySet Name="Profiles" EntityType="Self.Profile" />
     <EntitySet Name="Skills" EntityType="Self.Skill" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -147,9 +188,17 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customers" />
     </AssociationSet>
+    <AssociationSet Name="FK_Notification_Customer" Association="Self.FK_Notification_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
     <AssociationSet Name="FK_Profile_Customer" Association="Self.FK_Profile_Customer">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Profile1" Association="Self.FK_Notification_Profile1">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Notification" EntitySet="Notifications" />
     </AssociationSet>
     <AssociationSet Name="FK_Profile_Skill" Association="Self.FK_Profile_Skill">
       <End Role="Skill" EntitySet="Skills" />
