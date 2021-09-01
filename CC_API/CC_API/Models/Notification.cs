@@ -20,6 +20,7 @@ namespace CC_API.Models
         public string Contact_No { get; set; }
         public string Email_Address { get; set; }
         public string Message { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Profile Profile { get; set; }

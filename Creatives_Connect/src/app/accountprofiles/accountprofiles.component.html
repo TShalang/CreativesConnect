@@ -1,205 +1,35 @@
 <!-- {{userData.Contact_Number}}
 {{userData.Email_Address}} -->
-<app-navbar>]</app-navbar>
-<!-- 
-  <div class="card"  *ngFor="let item of profileList">
-    <div class="top">{{item.SkillName}}
-    <div class="picture"></div>
-    </div>
-    <div class="bottom"><br><br><br><br><br>
-        <div class="name">{{item.CustomerName}}</div><br>
-        <h2>{{item.Bio}}</h2>
-        <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
-        class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Gallery</button> <br><br>
-        <button>Update Profile</button>
-       
 
-        
-    </div>
-</div>
+<div class="container">
+  <input type="radio" name="s" id="home"  href="#">
+  <input type="radio" name="s" id="blog" checked>
+  <input type="radio" name="s" id="code">
+  <input type="radio" name="s" id="help">
+  <!-- <input type="radio" name="s" id="about"> -->
+  <nav>
+    <div class="slider"></div>
 
-
- <table class="table">
-    <thead>
-        <th>Bio</th>
-        <th>Name</th>
-        <th>Skill</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of profileList">
-            <td>{{item.Bio}}</td>
-            <td>{{item.Customer}}</td>
-            <td>{{item.SkillName}}</td>
-            <td>
-                <button mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
-                class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#profiledetails">View Profile
-               
-              </button>
-            </td>
-
-        </tr>
-    </tbody>
-</table> -->
-
-
-<!-- 
-
-<div class="container-fluid">
-
-  <div class="row mt-5">
-    <div class="col-sm-12 col-md-3">
-      <img class="img profile-picture img-fluid" [src]="dPicture" alt="Profile picture">
-    </div>
-    <div class="col-sm-12 col-md-5">
-      <div class="row">
-        <h4>Profile</h4>
-      </div>
-      <div class="row">
-        <div class="col">
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Name">
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Surname">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Username/Artist Name">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" id="input" placeholder="Email">
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Phone Number">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-
-                <input type="text" class="form-control" id="input" placeholder="Country">
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="City/Town">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Creative genre">
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="How much you worth">
-              </div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" id="textarea" rows="5"
-                placeholder="Type in your biography"></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group mt-3 col-md-6">
-                <button type="submit" class="btn btn-secondary btn-sm">Upload work</button>
-              </div>
-              <div class="form-group align-self-end text-right mt-3 col-md-6">
-                <button type="submit" class="btn btn-secondary btn-sm">Save</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-3">
-      <div class="row">
-        <h4>My Uploads</h4>
-      </div>
-      <div class="row mt-2">
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork" alt="Artwork">
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork2" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork2" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork2" alt="Artwork">
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork3" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork3" alt="Artwork">
-        </div>
-        <div class="col">
-          <img class="img artistwork img-fluid" [src]="myWork3" alt="Artwork">
-        </div>
-      </div>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col align-self-end text-right">
-            <div class="d-grid gap-2 ">
-              <button type="button" class="btn btn-secondary btn-sm">Next</button><span> </span>
-              <button type="button" class="btn btn-secondary btn-sm">Back</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-</div> -->
-
-
-
-<!-- Modal -->
-<!-- <div id="profiledetails" class="modal fade" role="dialog">
-
-      <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
-         
-          <div class="modal-body">
-            <h1 class="mt-2" style="font-size: 35px;">Profile Details</h1> <br><br>
-            <table class="table">
-              <thead>                
-                <th>Upload Type</th>
-                <th>Upload File</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let line of CurrentProfileList">
-                
-                  <td>{{line.File_Type}}</td>
-                  <td> <img style="height: 100px; width: 100px;" *ngIf="line.File_Upload" [src]="line.File_Upload"></td>
-   
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-          
-            <button type="button" class="btn btn-danger" mat-raised-button data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
+<label class="home" for="home">
+  <i class="fa fa-book"></i>Portfolios
+</label>
 
   
-  </div> -->
+    <label class="blog" for="blog">
+      <i class="fa fa-suitcase"></i>Projects
+    </label>
+    <label class="code" for="code">
+      <i class="fa fa-search"></i>Explore
+    </label>
+    <label class="help" for="help">
+      <i class="fa fa-envelope"></i>Notifications
+    </label>
+    <!-- <label class="about" for="about">
+      <i class="fas fa-user"></i>About
+    </label> -->
+  </nav>
+</div>
+
 
   
 <div class="container-fluid">
@@ -215,47 +45,17 @@
       <div class="row">
         <div class="col">
           
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="{{userData.First_Name}}" >
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="{{userData.Last_Name}}" >
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="{{userData.userName}}" >
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" id="input" placeholder="{{userData.Email_Address}}" >
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="{{userData.Contact_Number}}" >
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-
-                <input type="text" class="form-control" id="input" placeholder="South Africa" >
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="Gauteng">
-              </div>
-            </div>
+       
+      
             <div class="form-row">
               <div class="form-group col-md-6"  *ngFor="let item of profileList">
                 <select name="SkillID" #SkillID="ngModel" [(ngModel)]="service.formData.SkillID"
                       class="form-control">
-                      <option value="0">{{item.SkillName}}</option>
+                      <option value="{{item.SkillID}}">{{item.SkillName}}</option>
                       <option value="1">1</option>
                   </select>
               </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="input" placeholder="R200 Per hour">
-              </div>
+           
             </div>
             <div class="form-group"  *ngFor="let item of profileList">
               <textarea class="form-control" id="textarea" rows="5"

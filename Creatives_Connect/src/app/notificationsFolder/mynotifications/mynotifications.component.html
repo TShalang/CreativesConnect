@@ -1,0 +1,123 @@
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left;" alt="">
+    <input type="radio" name="s" id="home" onclick="window.location='/explore';">
+    <input type="radio" name="s" id="blog" onclick="window.location='/accpro';">
+    <input type="radio" name="s" id="code" onclick="window.location='/myprojects';">
+    <input type="radio" name="s" id="help" checked onclick="window.location='/mynotifications';">
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;">Logout</button> 
+    <button class="btn ml-5 infobutton"><i class="fa fa-info-circle" style="font-size: 50px"></i></button>
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+            <i class="fa fa-search"></i>Explore
+        </label>
+        <label class="blog" for="blog">
+            <i class="fa fa-suitcase"></i>My Portfolios
+        </label>
+        <label class="code" for="code">
+            <i class="fa fa-book"></i>Projects
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-envelope"></i>Notifications
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div>
+<body>
+    
+  <div id="left"></div>
+  <div id="right"></div>
+  <div id="container"></div>
+  <div class="topbar centre">
+    <h1 class="centre">Notifications</h1>
+  </div>
+
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Connections">
+        <div class="container" style="margin-top: 5%;">
+            
+           
+            <table class="table table-borderless flex" >
+                <thead class="thead-light">
+                    <tr>
+                        <th>Portfolio</th>
+                        <th>Date</th>
+                        <th>Contact No.</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                       
+                        <th>Delete</th>
+                    </tr>
+
+                </thead>
+          
+                <tr *ngIf="service.messageList.length===0"
+                >
+                 <td  class="font-italic text-center" colspan="6">
+                     You have no connections
+                 </td>
+             </tr>
+
+
+                <tr id="text" onclick="myFunction()" style="font-weight: 800;"  *ngFor="let x of service.messageList">
+                    <td data-toggle="modal" data-target="#myModal" (click)="getID(x.Customer_ID)">{{x.Skill}}</td>
+                    <td data-toggle="modal" data-target="#myModal" (click)="getID(x.Customer_ID)"> {{x.Date | date}}</td>           
+                    <td data-toggle="modal" data-target="#myModal" (click)="getID(x.Customer_ID)"> {{x.Contact_No}} </td>
+                    <td data-toggle="modal" data-target="#myModal" (click)="getID(x.Customer_ID)"> {{x.Email_Address}} </td>
+                    <td data-toggle="modal" data-target="#myModal" style="overflow: hidden; text-overflow: ellipsis" (click)="getID(x.UserID)"> {{x.Message}} </td>
+                  
+               
+                    
+                    <td><a class="btn btn-sm btn-danger text-white" (click)="getID(x.Customer_ID)"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            </table>
+        </div>
+    </mat-tab>
+    <mat-tab label="Payments">Content 2</mat-tab>
+  </mat-tab-group>
+
+
+</body>
+
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title" style="font-size: 35px;">Message Details</h1>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+         <div *ngFor="let x of service.messageList">
+            <p> Reply to: {{x.Skill}} Portfolio </p>
+            <p>From: {{x.Customer}}</p>
+            <hr>
+             <p>{{x.Message}}</p><br>
+
+             
+
+         </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-block" style="border-radius: 30px;" data-dismiss="modal" (click)="createProject()">Create project</button>
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+        </div>
+  
+      </div>
+    </div>
+  </div>

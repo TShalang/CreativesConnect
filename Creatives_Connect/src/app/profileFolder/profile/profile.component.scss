@@ -1,0 +1,247 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+// body{
+//   background-image: url("../../assets/images/pink.jpg");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-attachment: fixed;
+  
+ 
+// }
+.centre {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+	
+  }
+
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+.topbar {
+  width: 100%;
+  height: 5%;
+  background-color: rgb(236, 244, 248);
+  margin-top: 30px;
+  margin-bottom: 2%;
+}
+h1{
+  font-size: 55px;
+  font-family: cursive;
+  font-weight:bold;
+}
+p{
+  font-size: 20px;
+  font-family:cursive
+}
+.connectbutton{
+  width: 20%;
+  height: 60px;
+  border-radius: 30px;
+  color: white;
+  font-size: x-large;
+}
+
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+}
+.profiles {
+  display: block;
+  float: left;
+  padding: 20px;
+}
+.profiles img {
+  height: 450px;
+  width: 450px;
+  object-fit: cover;
+  
+}
+.leftside{
+  height: 75%;
+  width: 100%;
+  background-color: black;
+  margin-top: 60px
+}
+.rightside{
+  height:100%;
+  width: 40%;  
+  position: relative;
+  float: right;
+  background-color: white;
+}
+.rightside h1{
+  margin-top: 10%;
+  font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap";
+
+.logbutton{
+    float: right;
+    height: 40px;
+    width: 100px;
+    margin-top: 10px;
+    background-color: lightsteelblue;
+    border-radius: 30px;
+}
+.infobutton{
+    float: right;
+}
+
+nav {
+    margin-left: 30%;
+    margin-top: 20px;
+  width: 700px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 25px 7px rgba(9, 136, 183, 0.2);
+  @media (max-width: 700px){
+    width: 100vw;
+    height: 60px;
+    border-radius: 0px;
+  }
+  &::before {
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    position: absolute;
+  }
+  label {
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 5px;
+    margin: 0 5px;
+    color: #0ebeff;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    @media (max-width: 480px){
+      font-size: 14px;
+    }
+    @media (max-width: 370px){
+      margin: 0 14px;
+    }
+    &:hover {
+      color: #444;
+    }
+    i {
+      margin-right: 4px;
+    }
+  }
+  .slider {
+    position: absolute;
+    height: 100%;
+    width: 75%;
+    background: #0ebeff;
+    left: 0;
+    top: 0;
+    transition: 0.45s ease;
+    z-index: -1;
+  }
+}
+#home {
+  &:checked {
+    ~ {
+      nav {
+        label.home {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+#blog {
+  &:checked {
+    ~ {
+      nav {
+        label.blog {
+          color: #fff;
+        }
+        .slider {
+          left: 25%;
+        }
+      }
+    }
+  }
+}
+#code {
+  &:checked {
+    ~ {
+      nav {
+        label.code {
+          color: #fff;
+        }
+        .slider {
+          left: 50%;
+        }
+      }
+    }
+  }
+}
+#help {
+  &:checked {
+    ~ {
+      nav {
+        label.help {
+          color: #fff;
+        }
+        .slider {
+          left: 75%;
+        }
+      }
+    }
+  }
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+
+
+
+#left, #right {
+  margin-top: 6%;
+  position: fixed;
+  width: 15%;
+  height: 100%;
+  top: 0;
+}
+#left {
+  background: rgb(236, 244, 248);;
+  
+  left: 0
+}
+#right {
+  background: rgb(236, 244, 248);;
+  right: 0
+}

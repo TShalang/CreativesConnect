@@ -4,21 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ebf185445231497cb7efe2b2ffd5903f" Name="Diagram1">
-        <EntityTypeShape EntityType="CC_DBModel.Customer" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.File_Cat" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.Notification" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.Profile" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.Skill" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.Upload_Line" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.User" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CC_DBModel.User_Address" Width="1.5" PointX="4.75" PointY="7.25" IsExpanded="true" />
+      <Diagram DiagramId="9e93c778429a400b8ff0b0f7c406ea7b" Name="Diagram1">
+        <EntityTypeShape EntityType="CC_DBModel.BankDetail" Width="1.5" PointX="12.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.ClaimRefund" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Customer" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.File_Cat" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Notification" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.PaymentStatu" Width="1.5" PointX="8.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Profile" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Project" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Skill" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.Upload_Line" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CC_DBModel.User_Address" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="CC_DBModel.FK_BankDetails_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="CC_DBModel.FK_ClaimRefund_Project" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Customer_User" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Notification_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Profile_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CC_DBModel.FK_Project_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Notification_Profile1" ManuallyRouted="false" />
+        <AssociationConnector Association="CC_DBModel.FK_Project_PaymentStatus" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Profile_Skill" ManuallyRouted="false" />
+        <AssociationConnector Association="CC_DBModel.FK_Project_Profile" ManuallyRouted="false" />
         <AssociationConnector Association="CC_DBModel.FK_Upload_Line_Profile" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

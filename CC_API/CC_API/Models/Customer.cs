@@ -19,6 +19,7 @@ namespace CC_API.Models
         {
             this.Notifications = new HashSet<Notification>();
             this.Profiles = new HashSet<Profile>();
+            this.Projects = new HashSet<Project>();
         }
     
         public int Customer_ID { get; set; }
@@ -36,5 +37,7 @@ namespace CC_API.Models
         public virtual ICollection<Notification> Notifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Profile> Profiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

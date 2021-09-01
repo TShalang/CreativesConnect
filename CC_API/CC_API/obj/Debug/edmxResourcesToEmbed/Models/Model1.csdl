@@ -1,5 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CC_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BankDetail">
+    <Key>
+      <PropertyRef Name="BankDetailsID" />
+    </Key>
+    <Property Name="BankDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_BankDetails_Project" FromRole="BankDetails" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="ClaimRefund">
+    <Key>
+      <PropertyRef Name="ClaimRefundID" />
+    </Key>
+    <Property Name="ClaimRefundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_ClaimRefund_Project" FromRole="ClaimRefund" ToRole="Project" />
+  </EntityType>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="Customer_ID" />
@@ -16,6 +37,7 @@
     <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
     <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Customer" FromRole="Customer" ToRole="Notification" />
     <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_Customer" FromRole="Customer" ToRole="Profile" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Customer" FromRole="Customer" ToRole="Project" />
   </EntityType>
   <EntityType Name="File_Cat">
     <Key>
@@ -34,8 +56,17 @@
     <Property Name="Contact_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Notification_Customer" FromRole="Notification" ToRole="Customer" />
     <NavigationProperty Name="Profile" Relationship="Self.FK_Notification_Profile1" FromRole="Notification" ToRole="Profile" />
+  </EntityType>
+  <EntityType Name="PaymentStatu">
+    <Key>
+      <PropertyRef Name="PaymentStatusID" />
+    </Key>
+    <Property Name="PaymentStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_PaymentStatus" FromRole="PaymentStatus" ToRole="Project" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -46,10 +77,33 @@
     <Property Name="SkillID" Type="Int32" />
     <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ProfilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Pricing" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Profile_Customer" FromRole="Profile" ToRole="Customer" />
     <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Profile1" FromRole="Profile" ToRole="Notification" />
     <NavigationProperty Name="Skill" Relationship="Self.FK_Profile_Skill" FromRole="Profile" ToRole="Skill" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Profile" FromRole="Profile" ToRole="Project" />
     <NavigationProperty Name="Upload_Line" Relationship="Self.FK_Upload_Line_Profile" FromRole="Profile" ToRole="Upload_Line" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfileID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentStatusID" Type="Int32" />
+    <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <NavigationProperty Name="BankDetails" Relationship="Self.FK_BankDetails_Project" FromRole="Project" ToRole="BankDetails" />
+    <NavigationProperty Name="ClaimRefunds" Relationship="Self.FK_ClaimRefund_Project" FromRole="Project" ToRole="ClaimRefund" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Project_Customer" FromRole="Project" ToRole="Customer" />
+    <NavigationProperty Name="PaymentStatu" Relationship="Self.FK_Project_PaymentStatus" FromRole="Project" ToRole="PaymentStatus" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_Project_Profile" FromRole="Project" ToRole="Profile" />
   </EntityType>
   <EntityType Name="Skill">
     <Key>
@@ -102,6 +156,30 @@
     <Property Name="Postal_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <Association Name="FK_BankDetails_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="BankDetails" Type="Self.BankDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="BankDetails">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaimRefund_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="ClaimRefund" Type="Self.ClaimRefund" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ClaimRefund">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Customer_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -138,6 +216,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Project_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Notification_Profile1">
     <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
     <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
@@ -150,6 +240,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Project_PaymentStatus">
+    <End Role="PaymentStatus" Type="Self.PaymentStatu" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentStatus">
+        <PropertyRef Name="PaymentStatusID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="PaymentStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_Skill">
     <End Role="Skill" Type="Self.Skill" Multiplicity="0..1" />
     <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
@@ -159,6 +261,18 @@
       </Principal>
       <Dependent Role="Profile">
         <PropertyRef Name="SkillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Profile">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ProfileID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -175,15 +289,27 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CC_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BankDetails" EntityType="Self.BankDetail" />
+    <EntitySet Name="ClaimRefunds" EntityType="Self.ClaimRefund" />
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="File_Cat" EntityType="Self.File_Cat" />
     <EntitySet Name="Notifications" EntityType="Self.Notification" />
+    <EntitySet Name="PaymentStatus" EntityType="Self.PaymentStatu" />
     <EntitySet Name="Profiles" EntityType="Self.Profile" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
     <EntitySet Name="Skills" EntityType="Self.Skill" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Upload_Line" EntityType="Self.Upload_Line" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="User_Address" EntityType="Self.User_Address" />
+    <AssociationSet Name="FK_BankDetails_Project" Association="Self.FK_BankDetails_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="BankDetails" EntitySet="BankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaimRefund_Project" Association="Self.FK_ClaimRefund_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ClaimRefund" EntitySet="ClaimRefunds" />
+    </AssociationSet>
     <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
       <End Role="User" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customers" />
@@ -196,13 +322,25 @@
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Profile" EntitySet="Profiles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Project_Customer" Association="Self.FK_Project_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
     <AssociationSet Name="FK_Notification_Profile1" Association="Self.FK_Notification_Profile1">
       <End Role="Profile" EntitySet="Profiles" />
       <End Role="Notification" EntitySet="Notifications" />
     </AssociationSet>
+    <AssociationSet Name="FK_Project_PaymentStatus" Association="Self.FK_Project_PaymentStatus">
+      <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
     <AssociationSet Name="FK_Profile_Skill" Association="Self.FK_Profile_Skill">
       <End Role="Skill" EntitySet="Skills" />
       <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Profile" Association="Self.FK_Project_Profile">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Project" EntitySet="Projects" />
     </AssociationSet>
     <AssociationSet Name="FK_Upload_Line_Profile" Association="Self.FK_Upload_Line_Profile">
       <End Role="Profile" EntitySet="Profiles" />

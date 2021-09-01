@@ -17,9 +17,27 @@ namespace CC_API.Controllers
         private CC_DBEntities db = new CC_DBEntities();
 
         // GET: api/Notifications
-        public IQueryable<Notification> GetNotifications()
+        public System.Object GetNotifications()
         {
-            return db.Notifications;
+            var result = (from a in db.Notifications
+                          join b in db.Profiles on a.ProfileID equals b.ProfileID
+                          join c in db.Customers on a.Customer_ID equals c.Customer_ID
+
+
+
+                          select new
+                          {
+                              a.Date,
+                              a.Contact_No,
+                              a.Email_Address,
+                              a.Message,
+                              c.Customer_ID,
+                              c.User.UserID,
+                              Customer = c.First_Name + " " + c.Last_Name,
+                              Skill = b.Skill.Description,
+                          }).ToList();
+
+            return result;
         }
 
         // GET: api/Notifications/5

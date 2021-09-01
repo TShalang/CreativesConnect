@@ -27,10 +27,14 @@ namespace CC_API.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BankDetail> BankDetails { get; set; }
+        public virtual DbSet<ClaimRefund> ClaimRefunds { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<File_Cat> File_Cat { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<PaymentStatu> PaymentStatus { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Upload_Line> Upload_Line { get; set; }

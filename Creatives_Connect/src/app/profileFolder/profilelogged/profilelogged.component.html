@@ -1,0 +1,125 @@
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left;" alt="">
+    <input type="radio" name="s" id="home" checked onclick="window.location='/explore';">
+    <input type="radio" name="s" id="code"  onclick="window.location='/myprojectsclient';">
+    <input type="radio" name="s" id="help" onclick="window.location='/mynotifications';">
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;">Logout</button> 
+    <button class="btn ml-5 infobutton"><i class="fa fa-info-circle" style="font-size: 50px"></i></button>
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+            <i class="fa fa-search"></i>Explore
+        </label>
+        <label class="blog" for="blog">
+            <i class="fa fa-suitcase"></i>My Portfolios
+        </label>
+        <label class="code" for="code">
+            <i class="fa fa-book"></i>Projects
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-envelope"></i>Notifications
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div>
+  
+  <!-- 
+  
+  <div class="main centre">
+    
+    <div class="card"  *ngFor="let item of profileList">
+      <div class="top"><span>{{item.SkillName}}</span>  
+        <img class="picture" src="{{item.ProfilePic}}" alt="">
+      
+      </div>
+      <div class="bottom"><br><br><br><br><br>
+          <div class="name">{{item.CustomerName}}</div><br>
+          <h2>{{item.Bio}}</h2>
+          <button  mat-raised-button color="primary" class="tfunction" (click)="requestprofiledetails(item.ProfileID)" type="button"
+          class="btn btn-info btn-sm" data-toggle="modal" data-target="#profiledetails">View Profile</button> <br><br>
+        
+         
+          <button mat-raised-button color="accent" style="width: 100px; height: 100px; border-radius: 50%;" (click)="connect()">CONNECT!</button>
+          
+      </div>
+      
+  </div>
+  
+  
+  </div> -->
+  
+  
+  <body>
+    
+  
+  <div id="left"></div>
+  <div id="right"></div>
+  <div id="container"></div>
+  <div class="topbar centre">
+   
+  </div>
+  
+  
+  
+  
+  <div class="centre">
+    <br>
+    <h1>{{userData.Username}} </h1><br><br>
+    <p>{{userData.Bio}}</p><br>
+  
+  <p><b>Pricing Details: </b>R {{userData.Pricing}}.00</p><br>
+    
+  
+    <button mat-raised-button color="accent" class="connectbutton " (click)="connect()">Connect with {{userData.Username}}!</button><br><br>
+    
+  </div>
+  
+    <div style="margin-left: 15%; margin-right: 15%">
+      <div class="profiles" *ngFor="let line of info">
+      
+          <div class="column centre"  >
+            <img  [src]="line.File_Upload">
+       
+          </div>
+      </div>
+  
+  
+  
+  
+  </div>
+  
+  
+  </body>
+  
+  
+  
+  
+  
+    <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+  
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
+       
+        <div class="modal-body centre">
+          <h1 class="mt-5" style="font-size: 35px;">Please sign in to connect with {{userData.Username}}</h1> <br><br>
+          <button class="btn btn-primary " style="border-radius: 30px; width: 200px;" data-dismiss="modal" routerLink='/loginclient'>Sign-In</button>
+          <button  class="btn btn-primary ml-5" style="border-radius: 30px; width: 200px;">Sign-Up</button>
+        </div>
+        <div class="modal-footer">
+        
+          <button type="button" class="btn btn-danger" mat-raised-button data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>

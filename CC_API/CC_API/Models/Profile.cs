@@ -18,6 +18,7 @@ namespace CC_API.Models
         public Profile()
         {
             this.Notifications = new HashSet<Notification>();
+            this.Projects = new HashSet<Project>();
             this.Upload_Line = new HashSet<Upload_Line>();
         }
     
@@ -26,11 +27,16 @@ namespace CC_API.Models
         public Nullable<int> SkillID { get; set; }
         public string Bio { get; set; }
         public string ProfilePic { get; set; }
+        public string Username { get; set; }
+        public Nullable<decimal> Deposit { get; set; }
+        public string Pricing { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual Skill Skill { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Upload_Line> Upload_Line { get; set; }
     }

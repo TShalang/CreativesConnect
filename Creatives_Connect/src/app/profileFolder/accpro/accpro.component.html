@@ -1,0 +1,94 @@
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left;" alt="">
+    <input type="radio" name="s" id="home" onclick="window.location='/explore';">
+    <input type="radio" name="s" id="blog" checked >
+    <input type="radio" name="s" id="code"  onclick="window.location='/myprojects';">
+    <input type="radio" name="s" id="help">
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;">Logout</button> 
+    <button class="btn ml-5 infobutton"><i class="fa fa-info-circle" style="font-size: 50px"></i></button>
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+            <i class="fa fa-search"></i>Explore
+        </label>
+        <label class="blog" for="blog">
+            <i class="fa fa-suitcase"></i>My Portfolios
+        </label>
+        <label class="code" for="code">
+            <i class="fa fa-book"></i>Projects
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-envelope"></i>Notifications
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div>
+
+
+<body>
+    <div id="left"></div>
+<div id="right"></div>
+<div id="container"></div>
+<div class="topbar centre">
+ <h1>My Portfolio</h1>
+</div>
+
+
+    <div class="main" >
+
+        <!--cards -->
+    
+    <div *ngIf="profileList.length===0">
+      <p style="font-size: 24px;" class="font-italic text-center" colspan="7">You have no portfolios</p>
+    </div>
+
+        <div class="card" *ngFor="let item of profileList" style="padding: 20px;">
+     
+            <div class="row">
+                <a (click)="requestprofiledetails(item.ProfileID)"><img src="{{item.ProfilePic}}" style="width: 200px; height: 200px; border-radius: 50%; margin-left: 30px;" alt=""></a>
+                <div class="col mt-3">
+                    <h2>{{item.Username}}</h2><br>
+                    <h3>{{item.SkillName}}</h3>
+               
+                </div>
+                
+                 </div>
+            <div >
+                <h1 style="margin-left: 20px; margin-top: 20px;">{{item.Bio}}</h1>
+            </div>
+            <hr>
+            <h1 style="margin-left: 20px;">R {{item.Pricing}}.00</h1>
+            <p style="margin-left: 20px;">Hourly Rate</p>
+            <hr>
+
+
+            <div >
+                <h2 class="centre">Portfolio</h2>
+                <div class="profiles" *ngFor="let line of infos">
+                
+                    <div class="column centre"  >
+                      <img  [src]="line.File_Upload">
+                 
+                    </div>
+                </div>
+         
+        </div>
+
+            
+        </div>
+
+        <div class="centre">
+            <button class="btn btn-primary button" routerLink="/accountprofile" style="border-radius: 30px; ">Add New Portfolio</button>
+        </div>
+        
+    </div>
+</body>
+

@@ -34,6 +34,7 @@ export class AccountprofilesComponent implements OnInit {
       this.userData = data as string [];
       console.log(this.userData)
     });
+   
     // this.httpService.get('https://localhost:44372/api/Profiles/getAllInfo/' +  parseInt(localStorage["ProfileID"])  ).subscribe (data => {
     //   this.info = data as string [];
     //   console.log(this.info)

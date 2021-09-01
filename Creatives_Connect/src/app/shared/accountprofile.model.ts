@@ -4,5 +4,8 @@ export class Accountprofile {
     Customer_ID : number;
     SkillID : number;
     Bio : string;
-    ProfilePic: string
+    ProfilePic: string;
+    Username: string;
+    Deposit: number;
+    Pricing: string
 }

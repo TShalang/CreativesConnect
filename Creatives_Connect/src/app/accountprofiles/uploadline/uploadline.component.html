@@ -16,25 +16,25 @@
         </select>
     </div>
 
-    <input type="file" (change)="file($event.target)" accept="image/*">
+    <input type="file" (change)="file($event.target)" accept="image/*" multiple>
                   
-    <img width="200px" height="200px" *ngIf="object.url" [src]="object.url" class="image"> <br><br>
+    <br><br>
   
 
     
 
     <div class="form-group">
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="submit" [mat-dialog-close] class="btn btn-dark">Submit</button>
         <button type="button" class="btn btn-outine-dark ml" [mat-dialog-close]>Close</button>
     </div>
 
 </form>
 
-<tr *ngFor="let item of profileService.uploadItems; let i=index;">
+<!-- <tr *ngFor="let item of profileService.uploadItems; let i=index;">
                 
     <td>{{item.File_Type}}</td>
     <td> <img style="height: 100px; width: 100px;" *ngIf="item.File_Upload" [src]="item.File_Upload"></td>
     <td>
         <a class="btn btn-sm btn-info text-white" (click)="AddorEditItem(i, service.formData.ProfileID)">Edit</a>
     </td>
-</tr>
+</tr> -->

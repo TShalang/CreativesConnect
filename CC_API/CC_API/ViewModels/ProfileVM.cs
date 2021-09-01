@@ -19,6 +19,8 @@ namespace CC_API
         public string SkillName { get; set; }
         public string Bio { get; set; }
         public string ProfilePic { get; set; }
+        public string Username { get; set; }
+        public string Pricing { get; set; }
 
         public virtual ICollection<UploadLineVM> UploadLineVMs { get; set; }
     }

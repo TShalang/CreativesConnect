@@ -29,8 +29,10 @@ namespace CC_API.Controllers
                           {
                               a.ProfileID,
                               a.Bio,
-                              Customer = b.First_Name,
-                              Skill = c.Description
+                              Customer = b.First_Name + " " + b.Last_Name,
+                              Skill = c.Description,
+                              a.ProfilePic,
+                              a.Username
                           }).ToList();
 
             return result;
@@ -82,6 +84,22 @@ namespace CC_API.Controllers
             return collectionline;
         }
 
+        [System.Web.Http.Route("api/Profiles/getUploadInfo/{id}")]
+        [HttpGet]
+        public System.Object getUploadInfo(int id)
+        {
+            var images = (from a in db.Upload_Line
+                                  join b in db.Profiles on a.ProfileID equals b.ProfileID
+                                  where a.ProfileID == id
+                                  select new
+                                  {
+                                      a.File_Upload,                                   
+
+
+                                  }).ToList();
+            return images;
+        }
+
         [System.Web.Http.Route("api/Profiles/getAllInfo/{id}")]
         [HttpGet]
         public System.Object getAllInfo(int id)
@@ -95,19 +113,41 @@ namespace CC_API.Controllers
                         select new
                                   {
                                       a.Bio,
+                                      a.Username,
+                                      a.Deposit,
+                                      a.Pricing,
                                       Skill = c.Description,
-                                      b.First_Name,
-                                      b.Last_Name,
                                       b.Contact_Number,
                                       b.Email_Address,
                                       b.User.UserName,
-                            d.ProfilePic
+                                      d.ProfilePic,
+
+                                      
+
 
 
                         }).FirstOrDefault();
             return info ;
         }
 
+        [System.Web.Http.Route("api/Profiles/getProfileDetails/{id}")]
+        //[HttpGet]
+
+        //public System.Object getProfileDetails(int id)
+        //{
+        //    var quotationrequest = (from a in db.Profiles
+        //                            join b in db.Upload_Line on a.ProfileID equals b.ProfileID
+        //                            where a.ProfileID == id
+        //                            select new
+
+        //                            {
+        //                                a.Bio,
+        //                                b.
+
+        //                            }).FirstOrDefault();
+        //    return quotationrequest;
+
+        //}
 
 
 
@@ -134,6 +174,8 @@ namespace CC_API.Controllers
                     //designVM.Design_Name = design.Design_Name;
                     profileVM.ProfilePic = profile.ProfilePic;
                     profileVM.SkillID = profile.SkillID.Value;
+                    profileVM.Username = profile.Username;
+                    profileVM.Pricing = profile.Pricing;
 
                     profileVM.SkillName = db.Skills
                         .Where(s => s.SkillID == profileVM.SkillID)
@@ -187,7 +229,6 @@ namespace CC_API.Controllers
                     
                     profileVM.Bio = profile.Bio;
                     profileVM.ProfileID = profile.ProfileID;
-                    //designVM.Design_Name = design.Design_Name;
                     profileVM.SkillID = profile.SkillID.Value;
                     profileVM.ProfilePic = profile.ProfilePic;
 

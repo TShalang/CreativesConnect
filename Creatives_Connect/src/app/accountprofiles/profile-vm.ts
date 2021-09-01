@@ -13,7 +13,9 @@ export class ProfileVM {
     SkillID : number;
     SkillName : string;
     Bio : string;
-    ProfilePic: string
+    ProfilePic: string;
+    Username: string;
+    Pricing: string;
 
     UploadLineVMs : UploadLineVM[];
 

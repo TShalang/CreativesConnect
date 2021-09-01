@@ -1,0 +1,60 @@
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left;" alt="">
+    <input type="radio" name="s" id="home" checked onclick="window.location='/explore';">
+    <input type="radio" name="s" id="blog" onclick="window.location='/accpro';">
+    <input type="radio" name="s" id="code"  onclick="window.location='/myprojects';">
+    <input type="radio" name="s" id="help" onclick="window.location='/mynotifications';">
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;">Sign-In</button> 
+    
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+        
+        </label>
+        <label class="blog" for="blog">
+          
+        </label>
+        <label class="code" for="code">
+          
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-info-circle"></i>Information
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div>
+
+<div class="topbar centre"><br>
+    <h1>Explore Portfolios</h1>
+</div>
+<div class="container centre">
+    <div >
+        <div class="skills">
+            <a href="explorenoid">ALL</a>
+            <a *ngFor="let item of skillList" class="buttons" (click)="skill(item.SkillID)">{{ item.Description }}</a>
+        </div>
+    </div>
+    <br /><br />
+</div>
+<div style="margin-left: 15%; margin-right: 15%">
+    <div class="profiles" *ngFor="let profiles of profileList">
+        <div class="content">
+            <a  (click)="profile(profiles.ProfileID)">
+                <div class="content-overlay"></div>
+                <img style="height: 450px; width: 450px" [src]="profiles.ProfilePic" />
+                <div class="content-details fadeIn-top">
+                    <h3 class="content-title">{{profiles.Username}}</h3>
+                    <p class="coontent-text">{{profiles.Bio}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -269,8 +269,8 @@ C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\bin\System.Web.WebPages.
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\bin\System.Web.WebPages.Razor.xml
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\bin\Antlr3.Runtime.pdb
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.csprojAssemblyReference.cache
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.csproj.CoreCompileInputs.cache
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.csproj.CopyComplete
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.dll
 C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.pdb
+C:\Users\Tshidi\Desktop\Creatives Connect\CC_API\CC_API\obj\Debug\CC_API.csprojAssemblyReference.cache

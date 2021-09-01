@@ -1,7 +1,67 @@
-<app-navbarclient></app-navbarclient>
-<div class="centre">
-    <h1>Welcome to</h1>
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left; margin-top: 20px;" alt="">
+    <input hidden type="radio" name="s" id="home" >
+    <input hidden type="radio" name="s" id="blog">
+    <input hidden type="radio" name="s" id="code">
+    <input  type="radio" name="s" id="help" >
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;" (click)="signin()">Sign-In</button> 
+   
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+           
+        </label>
+        <label class="blog" for="blog">
+           
+        </label>
+        <label class="code" for="code">
+          
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-info-circle"></i>Information
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div><br><br>
+
+
+<body>
+    
+<div>
+<div class="row">
+    <div  class="col"><br><br><br><br>
+    <h1 style="margin-left: 8%;"><b> Are you a client</b></h1><br>
+    
+    <h1 style="margin-left: 2%;"><b>Looking for a creative? </b> </h1>
+    <h2 style="margin-top: 12%;margin-left: 8%;">Click explore to check out the talent</h2>
+    <!-- <h1>Welcome to</h1>
     <h1>Creatives Connect</h1>
-    <h2>A place to meet and collaborate with the best creatives</h2>
+    <h2>A place to meet and collaborate with the best creatives</h2> -->
+    <button  class="btn btn-primary button" style="border-radius: 30px; font-size: x-large;" (click)="explore()">Explore</button>
+
 
 </div>
+<div  class="col" >
+    <button  class="btn btn-primary buttonr" style="border-radius: 30px; font-size: x-large; margin-left: 65%; margin-top: 15%;" (click)="register()">Sign-up</button>
+    <h1 style="margin-left: 56%; margin-top: 5%;"><b> Are you a creative</b></h1><br>
+    <h1 style="margin-left: 56%;"><b>Looking for clients? </b> </h1>
+    <h2 style="margin-top: 5%;margin-left: 60%;">Click sign up and make a portfolio</h2>
+    <!-- <h1>Welcome to</h1>
+    <h1>Creatives Connect</h1>
+    <h2>A place to meet and collaborate with the best creatives</h2> -->
+
+    
+</div>
+</div>
+</div>
+
+
+</body>

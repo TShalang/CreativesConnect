@@ -4,13 +4,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Customer } from 'src/app/customer';
-import { Profile } from 'src/app/profile/profile.model';
 import { Accountprofile } from 'src/app/shared/accountprofile.model';
 import { AccountprofileService } from 'src/app/shared/accountprofile.service';
 import { Skills } from 'src/app/shared/skills.model';
 import { ProfileVM } from '../profile-vm';
 import { UploadLineVM } from '../upload-line-vm';
 import { UploadlineComponent } from '../uploadline/uploadline.component';
+
+import { Location } from '@angular/common';
+
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +30,7 @@ export class AccountprofileComponent implements OnInit {
   CurrentProfileList : UploadLineVM[] = [];
   
 
-  constructor(public service: AccountprofileService, private dialog: MatDialog, private httpService: HttpClient) { }
+  constructor(private location: Location, public service: AccountprofileService, private dialog: MatDialog, private httpService: HttpClient, private router: Router) { }
   userData
 
   ngOnInit(): void {
@@ -46,7 +50,13 @@ export class AccountprofileComponent implements OnInit {
   
   }
 
-  
+  alertWithSuccess(){  
+    Swal.fire('Success...', 'Your portfolio has been created!', 'success').then(function(result){
+    window.location.href = "/accpro"
+                 }) ;    
+  }
+
+
 
   resetForm(form?:NgForm){
     if(form = null)
@@ -56,7 +66,10 @@ export class AccountprofileComponent implements OnInit {
       Customer_ID : localStorage["Customer_ID"],
       SkillID : 0,
       Bio : '',
-      ProfilePic: ''
+      ProfilePic: '',
+      Username: '',
+      Deposit: 0,
+      Pricing: ''
     };
     this.service.uploadItems= [];
   }
@@ -65,7 +78,7 @@ export class AccountprofileComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
+    dialogConfig.width="18%";
     dialogConfig.data = {uploadItemIndex, ProfileID};
     
     this.dialog.open(UploadlineComponent, dialogConfig)
@@ -78,7 +91,7 @@ export class AccountprofileComponent implements OnInit {
       // form.form.addControl( 'ProfilePic' , new FormControl('') );
       // form.controls['ProfilePic'].setValue(this.formData.ProfilePic);
     
-    
+    this.alertWithSuccess();
       this.resetForm();
     })
   }

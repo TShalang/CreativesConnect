@@ -4,6 +4,7 @@ export class Notifications {
     ProfileID: number;
     Contact_No: string;
     Email_Address: string;
-    Message: string
+    Message: string;
+    Date: Date
 }
 

@@ -1,0 +1,132 @@
+<div class="" style="width: 80%; margin-left: 10%;">
+    <img src="../../assets/images/logo2.png" style="height: 80px; width: 310px; float: left;" alt="">
+    <input type="radio" name="s" id="home" onclick="window.location='/explore';">
+    <input type="radio" name="s" id="blog" onclick="window.location='/accpro';">
+    <input type="radio" name="s" id="code" checked onclick="window.location='/myprojects';">
+    <input type="radio" name="s" id="help" onclick="window.location='/mynotifications';">
+    <!-- <input type="radio" name="s" id="about"> -->
+    
+
+    <button class="logbutton btn" style="margin-left: 300px;">Logout</button> 
+    <button class="btn ml-5 infobutton"><i class="fa fa-info-circle" style="font-size: 50px"></i></button>
+    <nav>
+        <div class="slider"></div>
+
+        <label class="home" for="home">
+            <i class="fa fa-search"></i>Explore
+        </label>
+        <label class="blog" for="blog">
+            <i class="fa fa-suitcase"></i>My Portfolios
+        </label>
+        <label class="code" for="code">
+            <i class="fa fa-book"></i>Projects
+        </label>
+        <label class="help" for="help">
+            <i class="fa fa-envelope"></i>Notifications
+        </label>
+        <!-- <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label> -->
+
+    </nav>
+    
+</div>
+
+<div id="left"></div>
+<div id="right"></div>
+<div id="container"></div>
+<div class="topbar centre"><br><br><br>
+  <h1 class="centre">Projects</h1>
+</div>
+
+<div class="container" style="margin-top: 5%;">
+   
+
+  
+   
+    <table class="table table-borderless flex">
+        <thead class="thead-light">
+     
+            <tr>
+                <th>Description</th>
+                <th>Creatives Name</th>
+                
+                <th>Duration</th>
+                <th>Amount</th>
+               <th>Payment Status</th>
+               <th></th>
+               <th></th>
+               
+            </tr>
+
+        </thead>
+        <tr *ngIf="userData.length===0"
+       >
+        <td  class="font-italic text-center" colspan="7">
+            You have no projects
+        </td>
+    </tr>
+        <tr *ngFor="let x of userData">
+            <td >{{x.Description}}</td>
+            <td>{{x.Creative}}</td>
+           
+            <td > {{x.StartDate | date: 'shortDate'}}  - {{x.EndDate | date: 'shortDate'}} </td>
+            <td > R {{x.Amount}}.00</td>     
+          
+            <td > {{x.Status}} </td>
+          
+       
+            
+            <td><a class="btn btn-sm btn-info text-white" (click)="details(x.ProjectID);" data-toggle="modal" data-target="#myModal" style="border-radius: 30px; width: 80px;">Pay</a></td>
+            <td><a class="btn btn-sm btn-danger text-white" (click)="createProject();"  style="border-radius: 30px; width: 130px;">Claim Refund</a></td>
+        </tr>
+    </table>
+</div>
+
+
+  
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+  
+        <div class="modal-dialog" role="document" >
+          <div class="modal-content" style="color: black;" style="color: black; background-color: #F0F0F0;">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 35px;">Confirm</h1>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+           
+            <div class="modal-body centre">
+                <h2>Are you sure you want to proceed with payment?</h2>
+          
+  <form #form action="https://sandbox.payfast.co.za/eng/process" method="POST">
+    <input type="hidden" name="merchant_id" value="10000100">
+    <input type="hidden" name="merchant_key" value="46f0cd694581a">
+    <input type="hidden" name="return_url" value="https://tshalang.github.io/Success/">
+    <input type="hidden" name="cancel_url" value="https://tshalang.github.io/Success/">
+    <input type="hidden" name="amount" value="{{this.amount}}">
+    <input type="hidden" name="item_name" value="Creatives Connect">
+    <input type="hidden" name="signature" value="{{MD5string}}">
+
+    <button type="submit" class="btn btn-info" (click)="form.submit(); makePayment() " style="border-radius: 30px;">Pay Now</button>
+
+  </form>
+
+            </div>
+            <div class="modal-footer">
+            
+              <button type="button" class="btn btn-danger" mat-raised-button data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      
+      
+      </div>
+
+
+
+
+
+
+
+
+
